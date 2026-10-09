@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mollendo y la Provincia de Islay</title>
+    
+    <!-- CDN de GSAP y ScrollTrigger (¡CORREGIDO!) -->
+    <script src="https://cloudflare.com"></script>
+    <script src="https://cloudflare.com"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #050b14;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* REQUISITO 4: BARRA DE PROGRESO DE LECTURA */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #1405e2, #fafafa);
+            transform: scaleX(0);
+            transform-origin: left;
+            z-index: 100;
+        }
+
+        /* REQUISITO 1: PORTADA PARALLAX (CONTENEDOR) */
+        .parallax-header {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* CAPAS DEL PARALLAX (Imágenes optimizadas en WebP - REQUISITO 6) */
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120%; /* Extra para el desplazamiento */
+            background: linear-gradient(rgba(5,11,20,0.3), #050b14), url('https://unsplash.com') no-repeat center/cover;
+            z-index: 1;
+        }
+
+        .parallax-title {
+            position: relative;
+            z-index: 2;
+            font-size: 4rem;
+            text-align: center;
+            text-transform: uppercase;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+        }
+
+        /* SECCIONES ESTÁNDAR */
+        .section {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(90deg, rgba(5, 11, 20, 0.9) 30%, rgba(5, 11, 20, 0.4) 100%);
+            z-index: 1;
+        }
+
+        .section-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #f4f5f5;
+        }
+
+        p {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: #e2e8f0;
+        }
+
+        /* REQUISITO 3: ELEMENTOS PARA LA SECCIÓN PINNED */
+        #paisajes {
+            background-image: url('https://unsplash.com');
+            display: flex;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        .pin-gallery {
+            position: absolute;
+            right: 10%;
+            top: 25%;
+            width: 350px;
+            height: 250px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            backdrop-filter: blur(10px);
+            z-index: 2;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* REQUISITO 6: ACCESIBILIDAD PARA PREFERS-REDUCED-MOTION */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-delay: 0s !important;
+                animation-duration: 0s !important;
+                transition-duration: 0s !important;
+                scroll-behavior: auto !important;
+            }
+            .parallax-bg { height: 100% !important; transform: none !important; }
+        }
+
+        /* Botón Estilizado */
+        .btn-interactivo {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 32px;
+            background-color: #0070f3;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(5, 172, 223, 0.3);
+            transition: all 0.3s ease;
+        }
+        .btn-interactivo:hover {
+            background-color: #00d2ff;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- REQUISITO 4: Elemento de progreso -->
+    <div class="progress-bar"></div>
+
+    <!-- REQUISITO 1: Portada con entrada y Parallax -->
+    <h1 class="parallax-title">Mollendo <br><span style="font-size: 2rem; color: #00d2ff;">Provincia de Islay</span></h1>
+    </header>
+        <section class="section" style="background-image: url('https://images.squarespace-cdn.com/content/v1/6270902453000e0aeb486883/f04e09a5-69a0-4c3a-9db3-67dcafe26127/IMG_2803.jpeg');"></section>
+        
+        
+
+    <!-- REQUISITO 2: Secciones con toggleActions (Sección 1) -->
+    <section id="historia" class="section" style="background-image: url('https://www.caminoincamachu.com/wp-content/uploads/2024/02/Turismo-en-Mollendo-Peru.jpg');">
+        <div class="section-content">
+            <h1>Historia de Mollendo</h1>
+            <p>Conocido históricamente como el gran puerto del sur peruano. Nació oficialmente a la vida republicana el 6 de enero de 1871 tras la inauguración del tramo del Ferrocarril del Sur.</p>
+            <a href="#" class="btn-interactivo">Descubrir más</a>
+        </div>
+    </section>
+
+    <!-- REQUISITO 3: Sección Fijada (Pin) con Timeline Scrubbable (Sección 2) -->
+    <section id="paisajes" class="section" style="background-image: url('https://live.staticflickr.com/5049/5299054168_0314146fe1_b.jpg');">
+        <div class="section-content">
+            <h1>Paisajes Impresionantes</h1>
+            <p>Formaciones rocosas únicas y una atractiva combinación de extensas playas de arena fina y acantilados imponentes que contrastan con el Océano Pacífico.</p>
+            <a href="#" class="btn-interactivo">Ver Galería</a>
+        </div>
+        <!-- Cuadro que se animará de forma fluida mientras fijamos la pantalla -->
+    </section>
+
+    <!-- REQUISITO 2: Sección 3 -->
+    <section id="turismo" class="section" style="background-image: url('https://prensaregional.pe/wp-content/uploads/2025/01/La-Aguadita-reapertura-Mollendo-22012025-3.jpg');">
+        <div class="section-content">
+            <h1>Atractivos Turísticos</h1>
+            <p>Explora paisajes y monumentos como el histórico Castillo Forga, el malecón y la plaza Bolognesi que conectan la identidad de su historia local.</p>
+            <a href="#" class="btn-interactivo">Explorar mapas</a>
+        </div>
+    </section>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // REQUISITO 6: Validación de Accesibilidad desde JavaScript
+        const prefiereReducido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (!prefiereReducido) {
+
+            // 1. ANIMACIÓN DE ENTRADA (Timeline de la Portada) - REQUISITO 1
+            const tlEntrada = gsap.timeline();
+            tlEntrada.from(".parallax-title", { opacity: 0, y: 100, duration: 1.5, ease: "power4.out" });
+
+            // 2. PARALLAX EN LA PORTADA - REQUISITO 1
+            gsap.to(".parallax-bg", {
+                yPercent: 20,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: ".parallax-header",
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: true
+                }
+            });
+
+            // 3. BARRA DE PROGRESO GLOBAL - REQUISITO 4
+            gsap.to(".progress-bar", {
+                scaleX: 1,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "body",
+                    start: "top top",
+                    end: "bottom bottom",
+                    scrub: true
+                }
+            });
+
+            // 4. RESPONSIVE DESIGN CON MATCHMEDIA - REQUISITO 5
+            let mm = gsap.matchMedia();
+
+            // Configuración para Escritorio (Pantallas mayores a 768px)
+            mm.add("(min-width: 769px)", () => {
+                
+                // REQUISITO 2: Revelado de secciones alternado (Izquierda / Derecha)
+                ["#historia", "#turismo"].forEach((id, index) => {
+                    gsap.from(`${id} .section-content`, {
+                        opacity: 0,
+                        x: index % 2 === 0 ? -150 : 150,
+                        duration: 1.2,
+                        scrollTrigger: {
+                            trigger: id,
+                            start: "top 80%",
+                            toggleActions: "play none none reverse"
+                        }
+                    });
+                });
+
+                // REQUISITO 3: Sección Fijada (PIN) con Línea de tiempo controlada por SCRUB
+                const tlPin = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: "#paisajes",
+                        start: "top top",
+                        end: "+=100%", // Se queda retenido el equivalente a una pantalla de scroll
+                        pin: true,
+                        scrub: 1,
+                        constants: true
+                    }
+                });
+                // Animaciones coordinadas mientras está fijado:
+                tlPin.from("#paisajes .section-content", { opacity: 0, x: -50 })
+
+                .from(".pin-gallery", { scale: 0, rotation: -45, ease: "back.out" }, "<");
+});
+// Configuración Simplificada para Teléfonos (Evita saltos agresivos)
+mm.add("(max-width: 768px)", () => {
+// Animaciones simples hacia arriba exclusivamente para móviles
+gsap.utils.toArray(".section-content").forEach(content => {
+gsap.from(content, {
+opacity: 0,
+y: 50,
+duration: 1,
+scrollTrigger: {
+trigger: content,
+start: "top 85%",
+toggleActions: "play none none reverse"
+}
+});
+});
+});
+}
